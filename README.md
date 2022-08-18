@@ -11,7 +11,7 @@ Temos uma pasta com fotos de diversos animais e você apenas quer renomear as fo
  
 Estrutura básica:
 ```bash
-        ./PhotoBatch --<functionality> --Filter=<filter> --Folder=<path to your images> args<depends of functionality>
+./PhotoBatch --<functionality> --Filter=<filter> --Folder=<path to your images> args<depends of functionality>
 ```
  
 Abaixo temos as funcionalidades que atualmente estão implementadas no Photo Batch:
@@ -19,25 +19,25 @@ Abaixo temos as funcionalidades que atualmente estão implementadas no Photo Bat
 * Renomear:
    * Renomeia vários arquivos com base no filtro.
       ```bash
-        ./PhotoBatch --Rename --Filter=<filter> --Folder=<folder> --Prefix=<new_name> --StartNumber=<integer>
+      ./PhotoBatch --Rename --Filter=<filter> --Folder=<folder> --Prefix=<new_name> --StartNumber=<integer>
       ```
 * Converter:
    * Converte arquivos de uma extensão para outra
    Formatos aceitos: jpg png
      ```bash
-        ./PhotoBatch --Convert --Filter=<filter> --Folder=<folder> --From=<.extension> --To=<.extension> --Quality<Optional: Number between 1 and 100>
+     ./PhotoBatch --Convert --Filter=<filter> --Folder=<folder> --From=<.extension> --To=<.extension> --Quality<Optional: Number between 1 and 100>
      ```
  
 * Redimensionar:
    * Redimensiona várias imagens a partir da altura e largura.
      ```bash
-        ./PhotoBatch --Resize --Filter=<filter> --Folder=<folder> --Width=<integer> --Height=<integer> --Quality<Optional: Number between 1 and 100>
+     ./PhotoBatch --Resize --Filter=<filter> --Folder=<folder> --Width=<integer> --Height=<integer> --Quality<Optional: Number between 1 and 100>
      ```
  
 * Escalar:
    * Escala imagens a partir de um único número.
      ```bash
-        ./PhotoBatch --Scale --Filter=<filter> --Folder=<folder> --Amount<number greater than 0>
+     ./PhotoBatch --Scale --Filter=<filter> --Folder=<folder> --Amount<number greater than 0>
      ```
  
 ## Adições Futuras
