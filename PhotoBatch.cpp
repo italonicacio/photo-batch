@@ -74,15 +74,6 @@ Exemplos de uso:
 
 )";
 
-
-
-
-
-// void ValidadeArguments(const ArgumentParser& argParser)
-// {
-    
-// }
-
 int main(int argc, const char* argv[])
 {
     setlocale(LC_ALL, "pt_BR");

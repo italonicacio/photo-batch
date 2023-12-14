@@ -32,9 +32,10 @@ void Mode::Run()
     ClockT::time_point endTime = ClockT::now();
     
     ClockT::duration elapsedTime = endTime - starTime;
-    std::chrono::milliseconds elapsedTimeMs = std::chrono::duration_cast<std::chrono::milliseconds>(elapsedTime);
 
-    std::cout << GetModeName() << "Operação finalizada em " << elapsedTimeMs.count() << " ms."<< std::endl;
+    const std::string time = Utils::TimeConverter(elapsedTime);
+
+    std::cout << GetModeName() << "Operação finalizada em " << time << "."<< std::endl;
     
 }
 

@@ -27,7 +27,7 @@ std::unique_ptr<Mode> CreateModeFactory(const ArgumentParser& argParser)
     // Posso utilizar o if abaixo, porem não é escalavel
     // if (! (bRenameMode ^ bConvertMode ^ bResizeMode ^ bScaleMode))
 
-    // Está forma é mais escalavel, pois a medida que for adicionando novos modos ele não tem problema como o if
+    // Está forma é mais escalavel, pois https://www.realtimerendering.com/raytracing/Ray%20Tracing%20in%20a%20Weekend.pdfa medida que for adicionando novos modos ele não tem problema como o if
     const std::array<bool, 4> modes = {bRenameMode, bConvertMode, bResizeMode, bScaleMode};
     const std::ptrdiff_t numActiveModes = std::count(std::begin(modes), std::end(modes), true);
 
@@ -170,6 +170,11 @@ std::unique_ptr<Mode> CreateModeFactory(const ArgumentParser& argParser)
         const std::string to = argParser.GetOptionAs<std::string>(Args::Options::To);
         const int quality = argParser.GetOptionAs<int>(Args::Options::Quality);
 
+        const std::map<std::string, ConvertMode::Format> convertOptions = {
+            {"jpg", ConvertMode::Format::JPG},
+            {"png", ConvertMode::Format::PNG}
+        };
+
         if(from.empty())
         {
             throw std::invalid_argument("From não pode estar em branco!");
@@ -186,10 +191,11 @@ std::unique_ptr<Mode> CreateModeFactory(const ArgumentParser& argParser)
         }
 
 
-        const std::array<std::string, 2> convertOptions = {"jpg", "png"};
+        
+        
 
-        const bool bIsFromValid = std::find(std::begin(convertOptions), std::end(convertOptions), from) != std::end(convertOptions); 
-        const bool bIsToValid = std::find(std::begin(convertOptions), std::end(convertOptions), to) != std::end(convertOptions);  
+        const bool bIsFromValid = convertOptions.find(from) != convertOptions.end(); 
+        const bool bIsToValid = convertOptions.find(to) != convertOptions.end();  
 
         if(!bIsFromValid || !bIsToValid)
         {
@@ -201,17 +207,12 @@ std::unique_ptr<Mode> CreateModeFactory(const ArgumentParser& argParser)
             throw std::invalid_argument("From e To devem ser diferentes!");
         }
 
-        const std::map<std::string, ConvertMode::Format> convertOptionsMap = {
-            {"jpg", ConvertMode::Format::JPG},
-            {"png", ConvertMode::Format::PNG}
-        };
-
         if(quality > 0)
         {
-            return std::make_unique<ConvertMode>(filter, folder, convertOptionsMap.at(from), convertOptionsMap.at(to), quality); 
+            return std::make_unique<ConvertMode>(filter, folder, convertOptions.at(from), convertOptions.at(to), quality); 
         }
 
-        return std::make_unique<ConvertMode>(filter, folder, convertOptionsMap.at(from), convertOptionsMap.at(to));
+        return std::make_unique<ConvertMode>(filter, folder, convertOptions.at(from), convertOptions.at(to));
 
     }
 

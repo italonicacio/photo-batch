@@ -15,7 +15,7 @@ Estrutura básica:
 ```
  
 Abaixo temos as funcionalidades que atualmente estão implementadas no Photo Batch:
- 
+
 * Renomear:
    * Renomeia vários arquivos com base no filtro.
       ```bash
